@@ -70,7 +70,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: 80, // fixed width for alignment
+        width: 80,
         bgcolor: "linear-gradient(to bottom, #3f0071, #00695c)",
         display: "flex",
         flexDirection: "column",
@@ -97,7 +97,7 @@ const Sidebar = () => {
                     justifyContent: "center",
                     borderRadius: "12px",
                     cursor: "pointer",
-                    color: isActive ? "#4fc3f7" : "white",
+                    color: isActive ? "#fbc02d" : "white",
                     "&:hover": { color: "#4fc3f7", bgcolor: "rgba(255,255,255,0.1)" },
                     transition: "0.2s",
                   }}
@@ -110,7 +110,7 @@ const Sidebar = () => {
           })}
       </Box>
 
-      {/* Logout button pinned at bottom */}
+      {/* Logout button*/}
       <Tooltip title="Logout" placement="right">
         <Box
           sx={{
