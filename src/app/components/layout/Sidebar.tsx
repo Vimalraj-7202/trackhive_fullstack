@@ -45,19 +45,66 @@ const Sidebar = () => {
   const normalizedRole = (user?.role || "").replace(/-/g, " ").toLowerCase();
 
   const menuItems = [
-    { label: "Dashboard", icon: <SpaceDashboardOutlined />, path: "/dashboard", roles: ["team lead", "employee", "project manager"] },
-    { label: "Projects", icon: <WorkOutlineOutlined />, path: "/projects", roles: ["employee", "project manager"] },
-    { label: "Tasks", icon: <AssignmentOutlined />, path: "/tasks", roles: ["team lead", "project manager"] },
-    { label: "Settings", icon: <SettingsOutlined />, path: "/settings", roles: ["team lead", "employee", "project manager"] },
-    { label: "Teams", icon: <GroupsOutlined />, path: "/teams", roles: ["project manager"] },
-    { label: "Notifications", icon: <NotificationsActiveOutlined />, path: "/notifications", roles: ["team lead", "employee", "project manager"] },
-    { label: "Reports", icon: <AdfScannerOutlined />, path: "/reports", roles: ["team lead", "employee", "project manager"] },
-    { label: "Analytics", icon: <EqualizerOutlined />, path: "/analytics", roles: ["team lead", "employee", "project manager"] },
+    {
+      label: "Dashboard",
+      icon: <SpaceDashboardOutlined />,
+      path: "/dashboard",
+      roles: ["team lead", "employee", "project manager"],
+    },
+    {
+      label: "Projects",
+      icon: <WorkOutlineOutlined />,
+      path: "/projects",
+      roles: ["employee", "project manager"],
+    },
+    {
+      label: "Tasks",
+      icon: <AssignmentOutlined />,
+      path: "/tasks",
+      roles: ["team lead", "project manager"],
+    },
+    {
+      label: "Teams",
+      icon: <GroupsOutlined />,
+      path: "/teams",
+      roles: ["project manager"],
+    },
+    {
+      label: "Reports",
+      icon: <AdfScannerOutlined />,
+      path: "/reports",
+      roles: ["team lead", "employee", "project manager"],
+    },
+    {
+      label: "Analytics",
+      icon: <EqualizerOutlined />,
+      path: "/analytics",
+      roles: ["team lead", "employee", "project manager"],
+    },
+    {
+      label: "Notifications",
+      icon: <NotificationsActiveOutlined />,
+      path: "/notifications",
+      roles: ["team lead", "employee", "project manager"],
+    },
+    {
+      label: "Settings",
+      icon: <SettingsOutlined />,
+      path: "/settings",
+      roles: ["team lead", "employee", "project manager"],
+    },
   ];
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         <CircularProgress sx={{ color: "white" }} />
       </Box>
     );
@@ -81,7 +128,15 @@ const Sidebar = () => {
       }}
     >
       {/* Menu icons */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center", mt: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          alignItems: "center",
+          mt: 2,
+        }}
+      >
         {menuItems
           .filter((item) => item.roles.includes(normalizedRole))
           .map((item, index) => {
@@ -98,12 +153,17 @@ const Sidebar = () => {
                     borderRadius: "12px",
                     cursor: "pointer",
                     color: isActive ? "#fbc02d" : "white",
-                    "&:hover": { color: "#4fc3f7", bgcolor: "rgba(255,255,255,0.1)" },
+                    "&:hover": {
+                      color: "#4fc3f7",
+                      bgcolor: "rgba(255,255,255,0.1)",
+                    },
                     transition: "0.2s",
                   }}
                   onClick={() => router.push(item.path)}
                 >
-                  {React.cloneElement(item.icon, { sx: { fontSize: iconSize } })}
+                  {React.cloneElement(item.icon, {
+                    sx: { fontSize: iconSize },
+                  })}
                 </Box>
               </Tooltip>
             );
@@ -122,7 +182,7 @@ const Sidebar = () => {
             borderRadius: "12px",
             cursor: "pointer",
             color: "white",
-            mb:2,
+            mb: 2,
             "&:hover": { color: "red", bgcolor: "rgba(255,0,0,0.1)" },
           }}
           onClick={handleLogout}
