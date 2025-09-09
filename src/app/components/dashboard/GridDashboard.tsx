@@ -75,24 +75,51 @@ const DashboardPage: React.FC = () => {
           <Box
             sx={{
               display: "flex",
-              gap: 1,
+              gap: "15px",
               flexWrap: "nowrap",
               overflowX: "auto",
-              py: 2,
+              py: 1,
+              px: 1,
             }}
           >
             {/* Active Projects */}
             <Box
               sx={{
-                color: "#fff",
+                background: "linear-gradient(135deg, #e0f7fa 0%, #80deea 100%)",
+                color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
-                backgroundColor: "#f8fafb",
+                width: 250,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
                 flexShrink: 0,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
               }}
             >
+              {/* Icon in top-left rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #3b8ca5",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                }}
+              >
+                <WorkOutlineOutlinedIcon
+                  sx={{ color: "#3b8ca5", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and Value row */}
               <Box
                 sx={{
                   display: "flex",
@@ -100,53 +127,92 @@ const DashboardPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#3b8ca5", fontWeight: 500, fontSize: 14 }}
+                >
                   Active Projects
                 </Typography>
-                <FullscreenIcon
-                  sx={{ color: "black", cursor: "pointer", fontSize: 30 }}
-                />
-              </Box>
-              <Box
-                sx={{ display: "flex", alignItems: "center", mt: 2, gap: 2 }}
-              >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    backgroundColor: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "0.5px solid #d0cfd0",
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <WorkOutlineOutlinedIcon
-                    sx={{ color: "black", fontSize: 25 }}
-                  />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {pm.activeProjects}
                 </Typography>
+              </Box>
+
+              {/* Dotted Pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-active-projects"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#3b8ca5" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-active-projects)"
+                />
               </Box>
             </Box>
 
             {/* Active Sprints */}
             <Box
               sx={{
-                color: "#fff",
+                background: "linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)",
+                color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 250,
                 p: 2,
-                backgroundColor: "#f8fafb",
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                flexShrink: 0,
               }}
             >
+              {/* Icon in top-left rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid orange",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <WorkspacesOutlinedIcon
+                  sx={{ color: "orange", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and Value row */}
               <Box
                 sx={{
                   display: "flex",
@@ -154,49 +220,90 @@ const DashboardPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "orange", fontWeight: 500, fontSize: 14 }}
+                >
                   Active Sprints
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: "50%",
-                    backgroundColor: "orange",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <WorkspacesOutlinedIcon
-                    sx={{ color: "black", fontSize: 28 }}
-                  />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {pm.activeSprints}
                 </Typography>
+              </Box>
+
+              {/* Dotted Pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-activesprints"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="orange" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-activesprints)"
+                />
               </Box>
             </Box>
 
             {/* Avg Velocity */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #fff3e0 0%, #ecb73d 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 250,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                flexShrink: 0,
               }}
             >
+              {/* Icon in top-left rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid orange",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <TimelineOutlinedIcon sx={{ color: "orange", fontSize: 22 }} />
+              </Box>
+
+              {/* Label and Value row */}
               <Box
                 sx={{
                   display: "flex",
@@ -204,47 +311,88 @@ const DashboardPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "orange", fontWeight: 500, fontSize: 14 }}
+                >
                   Avg Velocity
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "orange",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <TimelineOutlinedIcon sx={{ color: "black", fontSize: 30 }} />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {pm.avgVelocity}
                 </Typography>
+              </Box>
+
+              {/* Dotted Pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-avgvelocity"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="orange" />
+                  </pattern>
+                </defs>
+                <rect width="100" height="140" fill="url(#dots-avgvelocity)" />
               </Box>
             </Box>
 
             {/* At Risk Projects */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #ffebee 0%, #ef9a9a 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 250,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                flexShrink: 0,
               }}
             >
+              {/* Icon in top-left rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #ef5350",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "#fbe9e7",
+                }}
+              >
+                <DangerousOutlinedIcon
+                  sx={{ color: "#ef5350", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and Value row */}
               <Box
                 sx={{
                   display: "flex",
@@ -252,49 +400,90 @@ const DashboardPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#ef5350", fontWeight: 500, fontSize: 14 }}
+                >
                   At Risk Projects
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#ef5350",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <DangerousOutlinedIcon
-                    sx={{ color: "white", fontSize: 30 }}
-                  />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {pm.atRiskProjects}
                 </Typography>
+              </Box>
+
+              {/* Dotted Pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-atriskprojects"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#ef9a9a" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-atriskprojects)"
+                />
               </Box>
             </Box>
 
             {/* Completed Projects */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #e8f5e9 0%, #81c784 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 250,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                flexShrink: 0,
               }}
             >
+              {/* Icon in top-left rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #66bb6a",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "#dcedc8",
+                }}
+              >
+                <TaskAltOutlinedIcon sx={{ color: "#66bb6a", fontSize: 22 }} />
+              </Box>
+
+              {/* Label and Value row */}
               <Box
                 sx={{
                   display: "flex",
@@ -302,29 +491,50 @@ const DashboardPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#66bb6a", fontWeight: 500, fontSize: 14 }}
+                >
                   Completed Projects
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#66bb6a",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <TaskAltOutlinedIcon sx={{ color: "white", fontSize: 30 }} />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {pm.completedProjects}
                 </Typography>
+              </Box>
+
+              {/* Dotted Pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-completedprojects"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#81c784" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-completedprojects)"
+                />
               </Box>
             </Box>
           </Box>
@@ -341,224 +551,411 @@ const DashboardPage: React.FC = () => {
               flexWrap: "wrap",
               overflowX: "auto",
               py: 2,
-              px: 13,
+              px: 5,
             }}
           >
             {/* Team Performance */}
+
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(to right, #f3d9ff, #d0a3ff)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 300,
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                position: "relative",
+                overflow: "hidden",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  cursor: "pointer",
+                },
               }}
             >
+              {/* Top Icon Box */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "10px",
+                    border: "2px solid #5e35b1",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <AutoGraphIcon sx={{ color: "#5e35b1", fontSize: 22 }} />
+                </Box>
+              </Box>
+
+              {/* Bottom: Label (left) + Value (right) */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "flex-end",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#2e0854", fontWeight: 500, fontSize: 14 }}
+                >
                   Team Performance
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#ab47bc",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ color: "#2e0854", fontWeight: "bold", fontSize: 22 }}
                 >
-                  <AutoGraphIcon sx={{ color: "white", fontSize: 30 }} />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
-                  {tl.teamPerformance}%
+                  {tl.teamPerformance}
                 </Typography>
+              </Box>
+
+              {/* Decorative dotted pattern on right */}
+              <Box
+                component="svg"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -30,
+                  top: -30,
+                  height: "160%",
+                  opacity: 0.1,
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="1" cy="1" r="1.5" fill="#5e35b1" />
+                  </pattern>
+                </defs>
+                <rect width="200" height="200" fill="url(#dots)" />
               </Box>
             </Box>
 
             {/* Team Members */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(to right, #ffe9c5, #ffd17f)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 300,
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                position: "relative",
+                overflow: "hidden",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  cursor: "pointer",
+                },
               }}
             >
+              {/* Top: Icon only */}
+              <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "10px",
+                    border: "2px solid #ef6c00",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <GroupsIcon sx={{ color: "#ef6c00", fontSize: 22 }} />
+                </Box>
+              </Box>
+
+              {/* Bottom: Label (left), Value (right) */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "flex-end",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#5d4037", fontWeight: 500, fontSize: 14 }}
+                >
                   Team Members
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#fb8c00",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ color: "#5d4037", fontWeight: "bold", fontSize: 22 }}
                 >
-                  <GroupsIcon sx={{ color: "white", fontSize: 30 }} />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {tl.teamMembers}
                 </Typography>
+              </Box>
+
+              {/* Decorative dotted shape */}
+              <Box
+                component="svg"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -30,
+                  top: -30,
+                  height: "160%",
+                  opacity: 0.1,
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-orange"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="1" cy="1" r="1.5" fill="#ef6c00" />
+                  </pattern>
+                </defs>
+                <rect width="200" height="200" fill="url(#dots-orange)" />
               </Box>
             </Box>
 
             {/* Open Issues */}
+
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(to right, #d2f8e3, #a5f3c3)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 300,
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                position: "relative",
+                overflow: "hidden",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  cursor: "pointer",
+                },
               }}
             >
+              {/* Top: Icon box */}
+              <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "10px",
+                    border: "2px solid #2e7d32",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <ReportGmailerrorredOutlinedIcon
+                    sx={{ color: "#2e7d32", fontSize: 22 }}
+                  />
+                </Box>
+              </Box>
+
+              {/* Bottom: Label on left, Value on right */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "flex-end",
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                <Typography
+                  sx={{ color: "#2e7d32", fontWeight: 500, fontSize: 14 }}
+                >
                   Open Issues
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#ef5350",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mr: 2,
-                  }}
+                <Typography
+                  sx={{ color: "#2e7d32", fontWeight: "bold", fontSize: 22 }}
                 >
-                  <ReportGmailerrorredOutlinedIcon
-                    sx={{ color: "white", fontSize: 30 }}
-                  />
-                </Box>
-                <Typography sx={{ color: "black" }} variant="h4">
                   {tl.openIssues}
                 </Typography>
+              </Box>
+
+              {/* Decorative dotted background */}
+              <Box
+                component="svg"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -30,
+                  top: -30,
+                  height: "160%",
+                  opacity: 0.1,
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-green"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="1" cy="1" r="1.5" fill="#2e7d32" />
+                  </pattern>
+                </defs>
+                <rect width="200" height="200" fill="url(#dots-green)" />
               </Box>
             </Box>
 
             {/* Upcoming Deadlines */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(to right, #fff7e1, #ffd966)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 300,
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                position: "relative",
+                overflow: "hidden",
                 flexShrink: 0,
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  cursor: "pointer",
+                },
               }}
             >
+              {/* Icon top-left */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "10px",
+                  border: "2px solid #fb8c00",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <QueryBuilderOutlinedIcon
+                  sx={{ color: "#fb8c00", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Bottom row: Name left, Dates right */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "flex-end",
+                  mt: 1,
                 }}
               >
-                <Typography sx={{ color: "gray", fontWeight: 500 }}>
+                {/* Label on bottom left */}
+                <Typography
+                  sx={{ color: "#fb8c00", fontWeight: 500, fontSize: 14 }}
+                >
                   Upcoming Deadlines
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box sx={{ display: "flex", mt: 1, gap: 2 }}>
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#ff9800",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <QueryBuilderOutlinedIcon
-                    sx={{ color: "white", fontSize: 30 }}
-                  />
-                </Box>
+
+                {/* Dates on bottom right */}
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: "column",
-                    overflowY: "auto",
-                    maxHeight: "90px",
-                    pr: 1,
+                    gap: 1,
+                    maxWidth: "140px",
+                    overflowX: "auto",
+                    justifyContent: "flex-end",
                   }}
                 >
-                  {tl.upcomingDeadlines.length > 0 ? (
-                    tl.upcomingDeadlines.map((d, idx) => (
-                      <Typography
-                        key={idx}
-                        variant="body2"
-                        sx={{ color: "black" }}
-                      >
-                        {d}
-                      </Typography>
-                    ))
+                  {tl.upcomingDeadlines && tl.upcomingDeadlines.length > 0 ? (
+                    tl.upcomingDeadlines.map((d, idx) => {
+                      const dateObj = new Date(d);
+                      const formattedDate = dateObj.toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        }
+                      );
+                      return (
+                        <Typography
+                          key={idx}
+                          variant="body2"
+                          sx={{
+                            color: "#000",
+                            backgroundColor: "#fff3cd",
+                            borderRadius: "6px",
+                            px: 1,
+                            py: 0.3,
+                            fontWeight: 500,
+                            fontSize: "0.85rem",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {formattedDate}
+                        </Typography>
+                      );
+                    })
                   ) : (
                     <Typography variant="body2" sx={{ color: "gray" }}>
                       No upcoming deadlines
                     </Typography>
                   )}
                 </Box>
+              </Box>
+
+              {/* Decorative dotted background */}
+              <Box
+                component="svg"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -30,
+                  top: -30,
+                  height: "160%",
+                  opacity: 0.1,
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-orange"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="1" cy="1" r="1.5" fill="#fb8c00" />
+                  </pattern>
+                </defs>
+                <rect width="200" height="200" fill="url(#dots-orange)" />
               </Box>
             </Box>
           </Box>
@@ -574,252 +971,399 @@ const DashboardPage: React.FC = () => {
               flexWrap: "nowrap",
               overflowX: "auto",
               py: 2,
-              px: 13,
+              px: 3,
             }}
           >
             {/* Progress */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #e1f5fe 0%, #29b6f6 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 310,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
-                flexShrink: 0,
+                justifyContent: "space-between",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
               }}
             >
+              {/* Icon in rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #29b6f6",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <IncompleteCircleOutlinedIcon
+                  sx={{ color: "#29b6f6", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and Value */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  flexGrow: 1,
                 }}
               >
-                <Typography sx={{ fontWeight: 500, color: "gray" }}>
+                <Typography
+                  sx={{ color: "#29b6f6", fontWeight: 500, fontSize: 14 }}
+                >
                   Progress
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box
-                sx={{ display: "flex", mt: 1, gap: 2, alignItems: "center" }}
-              >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#29B6F6",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <IncompleteCircleOutlinedIcon
-                    sx={{ color: "#fff", fontSize: 30 }}
-                  />
-                </Box>
-                <Typography variant="h4" sx={{ color: "black" }}>
                   {emp.progress}%
                 </Typography>
+              </Box>
+
+              {/* Dotted pattern */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-progress"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#29b6f6" />
+                  </pattern>
+                </defs>
+                <rect width="100" height="140" fill="url(#dots-progress)" />
               </Box>
             </Box>
 
             {/* Completed Tasks */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #dcedc8 0%, #66bb6a 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 310,
                 p: 2,
+                position: "relative",
+                overflow: "hidden",
+                flexShrink: 0,
                 display: "flex",
                 flexDirection: "column",
-                flexShrink: 0,
+                justifyContent: "space-between",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
               }}
             >
+              {/* Icon in rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #66bb6a",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <TaskAltOutlinedIcon sx={{ color: "#66bb6a", fontSize: 22 }} />
+              </Box>
+
+              {/* Label and Value */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  flexGrow: 1,
                 }}
               >
-                <Typography sx={{ fontWeight: 500, color: "gray" }}>
+                <Typography
+                  sx={{ color: "#66bb6a", fontWeight: 500, fontSize: 14 }}
+                >
                   Completed Tasks
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
-              </Box>
-              <Box
-                sx={{ display: "flex", mt: 1, gap: 2, alignItems: "center" }}
-              >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#66BB6A",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 22, color: "#000" }}
                 >
-                  <TaskAltOutlinedIcon sx={{ color: "#fff", fontSize: 30 }} />
-                </Box>
-                <Typography variant="h4" sx={{ color: "black" }}>
                   {emp.completedTasks}
                 </Typography>
               </Box>
-            </Box>
 
+              {/* Dotted pattern */}
+              <Box
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
+              >
+                <defs>
+                  <pattern
+                    id="dots-completedtasks"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#66bb6a" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-completedtasks)"
+                />
+              </Box>
+            </Box>
             {/* Assigned Tasks */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #fff3e0 0%, #ffa726 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 310,
                 p: 2,
-                display: "flex",
-                flexDirection: "column",
+                position: "relative",
                 overflow: "hidden",
                 flexShrink: 0,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
               }}
             >
+              {/* Icon in rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #ffa726",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <ScheduleSendOutlinedIcon
+                  sx={{ color: "#ffa726", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and value on same line */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  width: "100%",
+                  flexWrap: "nowrap",
                 }}
               >
-                <Typography sx={{ fontWeight: 500, color: "gray" }}>
+                <Typography
+                  sx={{ color: "#ffa726", fontWeight: 500, fontSize: 14 }}
+                >
                   Assigned Tasks
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#000",
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    textAlign: "right",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: "60%",
+                  }}
+                  title={emp.assignedTasks.join(", ")}
+                >
+                  {emp.assignedTasks.length > 0
+                    ? emp.assignedTasks.join(", ")
+                    : "No tasks assigned"}
+                </Typography>
               </Box>
+
+              {/* Dotted pattern */}
               <Box
-                sx={{ display: "flex", mt: 1, gap: 2, flex: 1, minHeight: 0 }}
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
               >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#FFA726",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mt: 1,
-                    flexShrink: 0,
-                  }}
-                >
-                  <ScheduleSendOutlinedIcon
-                    sx={{ color: "#fff", fontSize: 30 }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    overflowY: "auto",
-                    maxHeight: "100%",
-                  }}
-                >
-                  {emp.assignedTasks.length > 0 ? (
-                    emp.assignedTasks.map((t, idx) => (
-                      <Typography
-                        key={idx}
-                        variant="body2"
-                        sx={{ color: "black" }}
-                      >
-                        • {t}
-                      </Typography>
-                    ))
-                  ) : (
-                    <Typography variant="body2" sx={{ color: "gray" }}>
-                      No tasks assigned
-                    </Typography>
-                  )}
-                </Box>
+                <defs>
+                  <pattern
+                    id="dots-assignedtasks"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#ffa726" />
+                  </pattern>
+                </defs>
+                <rect
+                  width="100"
+                  height="140"
+                  fill="url(#dots-assignedtasks)"
+                />
               </Box>
             </Box>
 
             {/* Badges */}
             <Box
               sx={{
-                backgroundColor: "#f8fafb",
+                background: "linear-gradient(135deg, #fff9c4 0%, #ffca28 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
-                width: 260,
+                width: 310,
                 p: 2,
-                display: "flex",
-                flexDirection: "column",
+                position: "relative",
                 overflow: "hidden",
                 flexShrink: 0,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                transition: "transform 0.3s ease",
+                "&:hover": { transform: "scale(1.05)", cursor: "pointer" },
               }}
             >
+              {/* Icon in rounded square */}
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "12px",
+                  border: "1.5px solid #ffca28",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 1,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <MilitaryTechOutlinedIcon
+                  sx={{ color: "#ffca28", fontSize: 22 }}
+                />
+              </Box>
+
+              {/* Label and value on same line */}
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  width: "100%",
+                  flexWrap: "nowrap",
                 }}
               >
-                <Typography sx={{ fontWeight: 500, color: "gray" }}>
+                <Typography
+                  sx={{ color: "#ffca28", fontWeight: 500, fontSize: 14 }}
+                >
                   Badges
                 </Typography>
-                <FullscreenIcon sx={{ color: "black", cursor: "pointer" }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#000",
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    textAlign: "right",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: "60%",
+                  }}
+                  title={emp.badges.join(", ")}
+                >
+                  {emp.badges.length > 0
+                    ? emp.badges.map((b) => `🏅 ${b}`).join(", ")
+                    : "No badges earned"}
+                </Typography>
               </Box>
+
+              {/* Dotted pattern */}
               <Box
-                sx={{ display: "flex", mt: 1, gap: 2, flex: 1, minHeight: 0 }}
+                component="svg"
+                viewBox="0 0 100 140"
+                xmlns="http://www.w3.org/2000/svg"
+                sx={{
+                  position: "absolute",
+                  right: -20,
+                  top: -20,
+                  height: "160%",
+                  width: 200,
+                  opacity: 0.1,
+                  pointerEvents: "none",
+                }}
               >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: "#FFCA28",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mt: 1,
-                    flexShrink: 0,
-                  }}
-                >
-                  <MilitaryTechOutlinedIcon
-                    sx={{ color: "#fff", fontSize: 30 }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    overflowY: "auto",
-                    maxHeight: "100%",
-                  }}
-                >
-                  {emp.badges.length > 0 ? (
-                    emp.badges.map((b, idx) => (
-                      <Typography
-                        key={idx}
-                        variant="body2"
-                        sx={{ color: "black" }}
-                      >
-                        🏅 {b}
-                      </Typography>
-                    ))
-                  ) : (
-                    <Typography variant="body2" sx={{ color: "gray" }}>
-                      No badges earned
-                    </Typography>
-                  )}
-                </Box>
+                <defs>
+                  <pattern
+                    id="dots-badges"
+                    x="0"
+                    y="0"
+                    width="10"
+                    height="10"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.5" fill="#ffca28" />
+                  </pattern>
+                </defs>
+                <rect width="100" height="140" fill="url(#dots-badges)" />
               </Box>
             </Box>
           </Box>
@@ -837,9 +1381,9 @@ const DashboardPage: React.FC = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between", // Push left and right apart
+          justifyContent: "space-between",
           alignItems: "center",
-          mb: 2, // margin bottom for spacing from cards below
+          mb: 2,
         }}
       >
         {/* Left side: Avatar + greeting */}
@@ -864,57 +1408,6 @@ const DashboardPage: React.FC = () => {
           <NotificationsIcon sx={{ cursor: "pointer", color: "gray" }} />
         </Box>
       </Box>
-
-
-<Paper sx={{ p: 2, borderRadius: '8px',backgroundColor:'#f8fafb' }}>
-  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', justifyContent: 'space-between' }}>
-    
-    {/* Left Side: Icon + Text */}
-    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-      {/* Notification Icon with Badge */}
-      <Badge badgeContent={1} color="error" overlap="circular">
-        <Box
-          sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            backgroundColor: 'black',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <NotificationsIcon sx={{ color: 'white' }} />
-        </Box>
-      </Badge>
-
-      {/* Text Content */}
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography sx={{fontWeight:500,fontSize:'16px'}}>
-          Dear Manager
-        </Typography>
-        <Typography sx={{ color: 'gray',fontSize:'13px' }}>
-          We have observed a decline in <span style={{ color: 'red' }}>Henry's</span> performance over the past 2 weeks.
-        </Typography>
-      </Box>
-    </Box>
-
-    {/* Right Side: Button */}
-    <Button
-      sx={{
-        color: 'white',
-        backgroundColor: '#601b9f',
-        textTransform: 'none',
-        borderRadius: '20px',
-        whiteSpace: 'nowrap',
-        px: 2,
-        py: 0.5
-      }}
-    >
-      View Detail
-    </Button>
-  </Box>
-</Paper>
       {/* Cards below */}
       {renderCards()}
     </Box>
