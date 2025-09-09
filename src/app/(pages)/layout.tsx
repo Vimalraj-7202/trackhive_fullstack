@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from '@/app/components/layout/Sidebar';
+import Topbar from '../components/layout/Topbar';
 import { Box } from '@mui/material';
 
 const Layout = ({ children }: any) => {
@@ -20,7 +21,7 @@ const Layout = ({ children }: any) => {
       <Box
         sx={{
           width: '68px',
-          background:'linear-gradient(190deg, #31065dff 0%, #043238ff 50%, teal 100%)',
+          background:'linear-gradient(190deg, #601b9f 0%, #043238ff 70%, teal 90%)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -29,6 +30,7 @@ const Layout = ({ children }: any) => {
         }}
       >
         <Sidebar />
+        
       </Box>
 
       {/* Main Content */}

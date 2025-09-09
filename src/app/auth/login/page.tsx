@@ -110,17 +110,17 @@ const AuthPage = () => {
             left: 32,
             display: "flex",
             alignItems: "center",
-            gap: 1,
+            gap:'0px',
           }}
         >
-          <HiveIcon sx={{ color: "#fbc02d" }} />
+          <HiveIcon sx={{ color: "#fbc02d",fontSize:'40px' }} />
           <Typography variant="h6" fontWeight="bold">
             <span style={{ color: "#fbc02d" }}>Track</span>Hive
           </Typography>
         </Box>
 
         <Box sx={{ maxWidth: 450 }}>
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h3" fontWeight="bolder" gutterBottom>
             Lead productive teams with clarity
           </Typography>
           <Typography variant="body1" color="text.secondary" paragraph>
@@ -129,7 +129,7 @@ const AuthPage = () => {
           </Typography>
           <ul
             style={{
-              fontSize: "1rem",
+              fontSize: "1.2rem",
               listStyle: "none",
               padding: 0,
               margin: 0,

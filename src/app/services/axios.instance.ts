@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL||'http://localhost:5000/api/auth';
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL||'http://localhost:5000/api';
 const api = axios.create({
   baseURL,
   headers: {
@@ -10,12 +10,11 @@ const api = axios.create({
 
 // ====== Request Interceptor ======
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-  }
+  
   return config;
 });
 
@@ -23,8 +22,9 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Token invalid or expired
+    const status = error.response?.status;
+    const msg = error.response?.data?.error;
+    if (status === 401 && msg === "Invalid token") {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       window.location.href = "/auth/login";
@@ -32,6 +32,8 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
 
 // ====== Helper functions ======
 export const apiPost = (url: string, data?: any, config?: any) =>
