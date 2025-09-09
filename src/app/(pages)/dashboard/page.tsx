@@ -1,11 +1,11 @@
-import { Typography } from '@mui/material';
 import React from 'react';
+import GridDashboard from '@/app/components/dashboard/GridDashboard'
 
 const page = () => {
   return (
-    <div>
-      <Typography>Dashboard</Typography>
-    </div>
+    <>
+    <GridDashboard/>
+    </>
   )
 }
 

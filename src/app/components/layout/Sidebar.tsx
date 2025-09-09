@@ -67,7 +67,7 @@ const Sidebar = () => {
       label: "Teams",
       icon: <GroupsOutlined />,
       path: "/teams",
-      roles: ["project manager"],
+      roles: ["project manager","team lead"],
     },
     {
       label: "Reports",
@@ -117,7 +117,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: 80,
+        width:80,
         bgcolor: "linear-gradient(to bottom, #3f0071, #00695c)",
         display: "flex",
         flexDirection: "column",
