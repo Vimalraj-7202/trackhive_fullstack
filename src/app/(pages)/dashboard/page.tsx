@@ -1,10 +1,10 @@
 import React from 'react';
-import GridDashboard from '@/app/components/dashboard/GridDashboard'
+import Dashboard from '@/app/components/dashboard/index'
 
 const page = () => {
   return (
     <>
-    <GridDashboard/>
+    <Dashboard/>
     </>
   )
 }

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Box, Typography, Avatar, Paper, Badge, Button } from "@mui/material";
+import { Box, Typography, Avatar, } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboard } from "@/app/store/dashboard/dashboard.thunk";
 import { RootState, AppDispatch } from "@/app/store/store";
@@ -16,7 +16,6 @@ import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
 import IncompleteCircleOutlinedIcon from "@mui/icons-material/IncompleteCircleOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
-import FullscreenIcon from "@mui/icons-material/FullscreenRounded";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -270,7 +269,7 @@ const DashboardPage: React.FC = () => {
             {/* Avg Velocity */}
             <Box
               sx={{
-                background: "linear-gradient(135deg, #fff3e0 0%, #ecb73d 100%)",
+                background: "linear-gradient(135deg, #fff3e0 0%, #174d3d 100%)",
                 color: "#000",
                 borderRadius: "13px",
                 height: "100px",
@@ -312,7 +311,7 @@ const DashboardPage: React.FC = () => {
                 }}
               >
                 <Typography
-                  sx={{ color: "orange", fontWeight: 500, fontSize: 14 }}
+                  sx={{ color: "#174d3d", fontWeight: 500, fontSize: 14 }}
                 >
                   Avg Velocity
                 </Typography>
@@ -970,8 +969,8 @@ const DashboardPage: React.FC = () => {
               gap: 3,
               flexWrap: "nowrap",
               overflowX: "auto",
-              py: 2,
-              px: 3,
+              py:3,
+              px:3,
             }}
           >
             {/* Progress */}
@@ -1384,6 +1383,7 @@ const DashboardPage: React.FC = () => {
           justifyContent: "space-between",
           alignItems: "center",
           mb: 2,
+          position:'sticky'
         }}
       >
         {/* Left side: Avatar + greeting */}
@@ -1408,6 +1408,7 @@ const DashboardPage: React.FC = () => {
           <NotificationsIcon sx={{ cursor: "pointer", color: "gray" }} />
         </Box>
       </Box>
+      <Typography sx={{fontWeight:600,fontSize:'15px'}}>Overview</Typography>
       {/* Cards below */}
       {renderCards()}
     </Box>

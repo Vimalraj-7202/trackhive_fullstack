@@ -55,19 +55,19 @@ const Sidebar = () => {
       label: "Projects",
       icon: <WorkOutlineOutlined />,
       path: "/projects",
-      roles: ["employee", "project manager"],
+      roles: ["employee", "project manager","team lead"],
     },
     {
       label: "Tasks",
       icon: <AssignmentOutlined />,
       path: "/tasks",
-      roles: ["team lead", "project manager"],
+      roles: ["team lead", "project manager","employee"],
     },
     {
       label: "Teams",
       icon: <GroupsOutlined />,
       path: "/teams",
-      roles: ["project manager","team lead"],
+      roles: ["project manager","team lead","employee"],
     },
     {
       label: "Reports",
