@@ -19,3 +19,20 @@ select:-webkit-autofill:focus {
   transition: background-color 9999s ease-in-out 0s !important;
 }
 
+
+/* Hide all scrollbars globally */
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Optional: remove scrollbar for body and html */
+html, body {
+  overflow: auto; /* still scrollable */
+}
+
+
