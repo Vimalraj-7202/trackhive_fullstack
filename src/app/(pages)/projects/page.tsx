@@ -1,8 +1,12 @@
-import React from 'react'
+import { Box, Typography } from '@mui/material'
+import React from 'react';
+import Projects from '@/app/components/projects/index'
 
 const page = () => {
   return (
-    <div>Projects</div>
+    <Box sx={{p:1.2}}>
+      <Projects/>
+    </Box>
   )
 }
 
