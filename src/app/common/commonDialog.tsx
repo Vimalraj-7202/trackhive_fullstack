@@ -1,12 +1,35 @@
 'use client';
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from '@mui/material';
 
-const CommonDialog = ({ title, open, onClose, content, onSubmit }: any) => {
+interface CommonDialogProps {
+  title: string;
+  open: boolean;
+  onClose: () => void;
+  content: React.ReactNode;
+  onSubmit: () => void;
+  submitLabel?: string;   // ✅ new prop
+}
+
+const CommonDialog: React.FC<CommonDialogProps> = ({
+  title,
+  open,
+  onClose,
+  content,
+  onSubmit,
+  submitLabel = 'Submit', // ✅ default to "Submit"
+}) => {
   return (
     <Dialog
       open={open}
-      onClose={onClose} // fixed: was `close`
+      onClose={onClose}
       maxWidth="sm"
       fullWidth
       PaperProps={{
@@ -31,7 +54,7 @@ const CommonDialog = ({ title, open, onClose, content, onSubmit }: any) => {
             backgroundColor: 'red',
             textTransform: 'none',
             borderRadius: '6px',
-            width:'100px',
+            width: '100px',
             px: 3,
           }}
           onClick={onClose}
@@ -48,7 +71,7 @@ const CommonDialog = ({ title, open, onClose, content, onSubmit }: any) => {
           }}
           onClick={onSubmit}
         >
-          Submit
+          {submitLabel} {/* ✅ dynamic label */}
         </Button>
       </DialogActions>
     </Dialog>
