@@ -127,9 +127,9 @@ const ManageProject = () => {
           sx={{
             textTransform: "none",
             color: "white",
-            height: "35px",
-            width: "150px",
-            backgroundColor: "purple",
+            height: "40px",
+            width: "140px",
+            backgroundColor: "teal",
             borderRadius: "6px",
           }}
           onClick={handleOpenAdd}
@@ -139,45 +139,77 @@ const ManageProject = () => {
       </Box>
 
       {/* Project List */}
-      <Grid container spacing={2} mt={2}>
+      <Grid container spacing={3} mt={2}>
         {projects.map((project, index) => (
           <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
             <Paper
               elevation={3}
               sx={{
                 p: 2,
-                borderRadius: "8px",
-                width: "300px",
-                height: "150px",
+                borderRadius: "12px",
+                width: "290px",
+                height: "130px",
                 position: "relative",
+                background: "linear-gradient(135deg, #ffffff 30%, #008080)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                overflow: "hidden",
+                color: "#fff",
               }}
             >
-              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                {project.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {project.description}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                Duration: {project.duration}
-              </Typography>
+              {/* Project Content */}
+              <Box>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", color: "black" }}
+                >
+                  {project.name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ mt: 3, color: "black", fontSize: "16px" }}
+                >
+                  {project.description}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 1, color: "gray", fontSize: "14px" }}
+                >
+                  Duration: {project.duration}
+                </Typography>
+              </Box>
 
-              <Box sx={{ position: "absolute", bottom: 8, right: 8 }}>
+              {/* Actions */}
+              <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
                 <IconButton
                   size="small"
-                  color="primary"
+                  color="inherit"
                   onClick={() => handleEdit(index)}
                 >
                   <EditIcon fontSize="small" />
                 </IconButton>
                 <IconButton
                   size="small"
-                  color="error"
+                  color="inherit"
                   onClick={() => handleDelete(index)}
                 >
                   <DeleteIcon fontSize="small" />
                 </IconButton>
               </Box>
+
+              {/* Dotted Pattern */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.3) 2px, transparent 2px)`,
+                  backgroundSize: "18px 18px",
+                  transform: "rotate(-45deg) scale(1.2)",
+                  opacity: 0.3,
+                  pointerEvents: "none",
+                }}
+              />
             </Paper>
           </Grid>
         ))}
