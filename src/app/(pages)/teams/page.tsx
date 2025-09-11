@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Team from '@/app/components/team/index'
 
 const page = () => {
   return (
-    <div>Team</div>
+    <div><Team/></div>
   )
 }
 

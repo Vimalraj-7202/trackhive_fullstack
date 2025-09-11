@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Task from '@/app/components/tasks/index'
 
 const page = () => {
   return (
-    <div>Tasks</div>
+    <>
+    <Task/>
+    </>
   )
 }
 

@@ -291,7 +291,7 @@ const DashboardPage: React.FC = () => {
                   width: 40,
                   height: 40,
                   borderRadius: "12px",
-                  border: "1.5px solid orange",
+                  border: "1px solid #75907f",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -299,7 +299,7 @@ const DashboardPage: React.FC = () => {
                   backgroundColor: "transparent",
                 }}
               >
-                <TimelineOutlinedIcon sx={{ color: "orange", fontSize: 22 }} />
+                <TimelineOutlinedIcon sx={{ color: "#75907f", fontSize: 22 }} />
               </Box>
 
               {/* Label and Value row */}
@@ -1387,7 +1387,7 @@ const DashboardPage: React.FC = () => {
         }}
       >
         {/* Left side: Avatar + greeting */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Avatar alt={`${auth.user?.name || "Employee"}`}>
             {(auth.user?.name || "E").charAt(0).toUpperCase()}
           </Avatar>
@@ -1399,7 +1399,7 @@ const DashboardPage: React.FC = () => {
               {data?.role ? data.role.replace("-", " ") : "Dashboard"}
             </Typography>
           </Box>
-        </Box>
+        </Box> 
 
         {/* Right side: Icons */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

@@ -1,5 +1,5 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 import {
   Button,
   Dialog,
@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 
 interface CommonDialogProps {
   title: string;
@@ -15,7 +15,7 @@ interface CommonDialogProps {
   onClose: () => void;
   content: React.ReactNode;
   onSubmit: () => void;
-  submitLabel?: string;   // ✅ new prop
+  submitLabel?: string;
 }
 
 const CommonDialog: React.FC<CommonDialogProps> = ({
@@ -24,7 +24,7 @@ const CommonDialog: React.FC<CommonDialogProps> = ({
   onClose,
   content,
   onSubmit,
-  submitLabel = 'Submit', // ✅ default to "Submit"
+  submitLabel = "Submit",
 }) => {
   return (
     <Dialog
@@ -34,9 +34,9 @@ const CommonDialog: React.FC<CommonDialogProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          width: '500px',
-          height: '50vh',
-          borderRadius: '8px',
+          width: "500px",
+          height: "50vh",
+          borderRadius: "8px",
           p: 1,
         },
       }}
@@ -47,14 +47,14 @@ const CommonDialog: React.FC<CommonDialogProps> = ({
 
       <DialogContent>{content}</DialogContent>
 
-      <DialogActions sx={{ justifyContent: 'center', gap: 2 }}>
+      <DialogActions sx={{ justifyContent: "center", gap: 2 }}>
         <Button
           sx={{
-            color: 'white',
-            backgroundColor: 'red',
-            textTransform: 'none',
-            borderRadius: '6px',
-            width: '100px',
+            color: "white",
+            backgroundColor: "red",
+            textTransform: "none",
+            borderRadius: "6px",
+            width: "100px",
             px: 3,
           }}
           onClick={onClose}
@@ -63,15 +63,15 @@ const CommonDialog: React.FC<CommonDialogProps> = ({
         </Button>
         <Button
           sx={{
-            color: 'white',
-            backgroundColor: 'green',
-            textTransform: 'none',
-            borderRadius: '6px',
+            color: "white",
+            backgroundColor: "green",
+            textTransform: "none",
+            borderRadius: "6px",
             px: 3,
           }}
           onClick={onSubmit}
         >
-          {submitLabel} {/* ✅ dynamic label */}
+          {submitLabel}
         </Button>
       </DialogActions>
     </Dialog>
