@@ -32,3 +32,11 @@ export const registerUser=createAsyncThunk(
         }
     }
 )
+
+
+// auth.thunk.ts
+export const getAllUsers = createAsyncThunk("auth/getAllUsers", async () => {
+  const res = await fetch("/api/users");
+  const data = await res.json();
+  return data;
+});

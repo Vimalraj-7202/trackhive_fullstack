@@ -17,7 +17,6 @@ import IncompleteCircleOutlinedIcon from "@mui/icons-material/IncompleteCircleOu
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import NightsStayIcon from "@mui/icons-material/NightsStay";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
 //type import

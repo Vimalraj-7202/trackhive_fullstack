@@ -12,28 +12,39 @@ function ManageTab() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      {/* Tabs */}
-      <Tabs value={value} onChange={handleChange}>
-        <Tab sx={{ textTransform: "none", fontSize: 18}} label="Projects" />
-        <Tab
-          sx={{ textTransform: "none",fontSize: 18}}
-          label="Assign Projects"
-        />
-      </Tabs>
+<Box sx={{ width: "100%", height: "calc(100vh -20px)", display: "flex", flexDirection: "column" }}>
+  {/* Tabs */}
+  <Tabs
+    value={value}
+    onChange={handleChange}
+    textColor="inherit"
+    TabIndicatorProps={{ style: { backgroundColor: "teal", height: 3 } }}
+  >
+    <Tab
+      sx={{
+        textTransform: "none",
+        fontSize: 18,
+        color: value === 0 ? "teal" : "black",
+      }}
+      label="Projects"
+    />
+    <Tab
+      sx={{
+        textTransform: "none",
+        fontSize: 18,
+        color: value === 1 ? "teal" : "black",
+      }}
+      label="Assign Projects"
+    />
+  </Tabs>
 
-      {/* Tab Panels */}
-      {value === 0 && (
-        <Box sx={{ p: 2 }}>
-          <ManageProject />
-        </Box>
-      )}
-      {value === 1 && (
-        <Box sx={{ p: 2 }}>
-          <AssignProject />
-        </Box>
-      )}
-    </Box>
+  {/* Tab Panels */}
+  <Box sx={{ flex: 1, overflowY: "auto" }}>
+    {value === 0 && <ManageProject />}
+    {value === 1 && <AssignProject />}
+  </Box>
+</Box>
+
   );
 }
 
