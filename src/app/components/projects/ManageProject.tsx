@@ -1,123 +1,64 @@
-import {
-  Typography,
-  Box,
-  Button,
-  TextField,
-  Grid,
-  Paper,
-  IconButton,
-} from "@mui/material";
+import {Typography,Box,Button,Grid,Paper,IconButton,TextField} from "@mui/material";
 import React, { useEffect, useState } from "react";
-import CommonDialog from "@/app/common/commonDialog";
-import CommonDeleteDialog from "@/app/common/DeleteDialog";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useDispatch, useSelector } from "react-redux";
+import {createProject,getAllProject,updateProject,deleteProject} from "@/app/store/project/project.thunk";
+import { RootState } from "@/app/store/store";
+import CommonDialog from "@/app/common/commonDialog";
+import CommonDeleteDialog from "@/app/common/DeleteDialog";
 
 const ManageProject = () => {
+  const dispatch = useDispatch();
+  const { loading, error, data } = useSelector((state: RootState) => state.project);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    duration: "",
-  });
-  const [projects, setProjects] = useState<any[]>([]);
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+  const [formData, setFormData] = useState({projectName: "",projectDescription: "",duration: ""});
+  const [editProjectId, setEditProjectId] = useState<string | null>(null);
+  const [deleteProjectId, setDeleteProjectId] = useState<string | null>(null);
 
   useEffect(() => {
-    try {
-      const storedProjects = localStorage.getItem("projects");
-      if (storedProjects) {
-        setProjects(JSON.parse(storedProjects));
-      }
-    } catch (err) {
-      console.error("Error parsing localStorage projects:", err);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (projects.length > 0) {
-      localStorage.setItem("projects", JSON.stringify(projects));
-    } else {
-      localStorage.removeItem("projects");
-    }
-  }, [projects]);
+    dispatch(getAllProject() as any);
+  }, [dispatch]);
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleOpenAdd = () => {
-    setFormData({ name: "", description: "", duration: "" });
-    setEditIndex(null);
-    setOpenDialog(true);
-  };
-
-  const handleEdit = (index: number) => {
-    setFormData(projects[index]);
-    setEditIndex(index);
-    setOpenDialog(true);
-  };
-
-  const handleSubmit = () => {
-    if (editIndex !== null) {
-      const updatedProjects = [...projects];
-      updatedProjects[editIndex] = formData;
-      setProjects(updatedProjects);
-    } else {
-      setProjects((prev) => [...prev, formData]);
+  // submit form
+  const handleSubmit = async () => {
+    try {
+      if (editProjectId) {
+        await dispatch(
+          updateProject({ id: editProjectId, data: formData }) as any
+        ).unwrap();
+      } else {
+        await dispatch(createProject(formData) as any).unwrap();
+      }
+      setOpenDialog(false);
+      setFormData({ projectName: "", projectDescription: "", duration: "" });
+      setEditProjectId(null);
+      dispatch(getAllProject() as any);
+    } catch (err) {
+      console.error("Failed to save project:", err);
     }
-    setFormData({ name: "", description: "", duration: "" });
-    setEditIndex(null);
-    setOpenDialog(false);
   };
 
-  const handleDelete = (index: number) => {
-    setDeleteIndex(index);
-    setOpenDeleteDialog(true);
-  };
-
-  const confirmDelete = () => {
-    if (deleteIndex !== null) {
-      setProjects((prev) => prev.filter((_, i) => i !== deleteIndex));
+  // delete handler
+  const handleDelete = async () => {
+    if (!deleteProjectId) return;
+    try {
+      await dispatch(deleteProject(deleteProjectId) as any).unwrap();
+      setDeleteProjectId(null);
+      setOpenDeleteDialog(false);
+      dispatch(getAllProject() as any);
+    } catch (err) {
+      console.error("Failed to delete project:", err);
     }
-    setDeleteIndex(null);
-    setOpenDeleteDialog(false);
   };
-
-  const formDialogContent = (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}>
-      <TextField
-        label="Project Name"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        fullWidth
-      />
-      <TextField
-        label="Description"
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        fullWidth
-        multiline
-        rows={3}
-      />
-      <TextField
-        label="Duration"
-        name="duration"
-        value={formData.duration}
-        onChange={handleChange}
-        fullWidth
-        placeholder="e.g., 3 weeks"
-      />
-    </Box>
-  );
 
   return (
-    <>
+    <Box sx={{ overflowY: "auto", height: "calc(100vh - 120px)" }}>
       <Typography sx={{ fontWeight: "bold", color: "gray", fontSize: "17px" }}>
         Manage Project
       </Typography>
@@ -128,49 +69,73 @@ const ManageProject = () => {
             textTransform: "none",
             color: "white",
             height: "40px",
-            width: "140px",
+            width: "145px",
             backgroundColor: "teal",
             borderRadius: "6px",
           }}
-          onClick={handleOpenAdd}
+          onClick={() => {
+            setEditProjectId(null);
+            setFormData({
+              projectName: "",
+              projectDescription: "",
+              duration: "",
+            });
+            setOpenDialog(true);
+          }}
         >
           Add Project
         </Button>
       </Box>
 
       {/* Project List */}
-      <Grid container spacing={3} mt={2}>
-        {projects.map((project, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
+      <Grid
+        container
+        spacing={3}
+        mt={2}
+        ml={1}
+        sx={{
+          overflowY: "auto",
+          maxHeight: "77vh",
+        }}
+      >
+        {loading && (
+          <Typography sx={{ mt: 2, color: "gray" }}>Loading...</Typography>
+        )}
+        {error && (
+          <Typography sx={{ mt: 2, color: "red" }}>Error: {error}</Typography>
+        )}
+
+        {data?.map((project: any) => (
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={project._id}>
             <Paper
               elevation={3}
               sx={{
-                p: 2,
+                p:1,
                 borderRadius: "12px",
-                width: "290px",
-                height: "130px",
+                width: "320px",
+                height: "150px",
                 position: "relative",
+                minHeight:'150px',
                 background: "linear-gradient(135deg, #ffffff 30%, #008080)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 overflow: "hidden",
-                color: "#fff",
+                color: "#fff"
               }}
             >
               {/* Project Content */}
               <Box>
                 <Typography
-                  variant="h6"
-                  sx={{ fontWeight: "bold", color: "black" }}
+                  sx={{ fontWeight: "bold", color: "black", fontSize: "18px" }}
                 >
-                  {project.name}
+                  {project.projectName}
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{ mt: 3, color: "black", fontSize: "16px" }}
                 >
-                  {project.description}
+                  {project.projectDescription}
                 </Typography>
                 <Typography
                   variant="caption"
@@ -185,14 +150,25 @@ const ManageProject = () => {
                 <IconButton
                   size="small"
                   color="inherit"
-                  onClick={() => handleEdit(index)}
+                  onClick={() => {
+                    setEditProjectId(project._id);
+                    setFormData({
+                      projectName: project.projectName,
+                      projectDescription: project.projectDescription,
+                      duration: project.duration,
+                    });
+                    setOpenDialog(true);
+                  }}
                 >
                   <EditIcon fontSize="small" />
                 </IconButton>
                 <IconButton
                   size="small"
                   color="inherit"
-                  onClick={() => handleDelete(index)}
+                  onClick={() => {
+                    setDeleteProjectId(project._id);
+                    setOpenDeleteDialog(true);
+                  }}
                 >
                   <DeleteIcon fontSize="small" />
                 </IconButton>
@@ -215,14 +191,38 @@ const ManageProject = () => {
         ))}
       </Grid>
 
-      {/* Add/Edit Dialog */}
+      {/* Add/Edit Project Dialog */}
       <CommonDialog
-        title={editIndex !== null ? "Edit Project" : "Add Project"}
-        content={formDialogContent}
+        title={editProjectId ? "Edit Project" : "Add Project"}
         open={openDialog}
         onClose={() => setOpenDialog(false)}
         onSubmit={handleSubmit}
-        submitLabel={editIndex !== null ? "Update" : "Add"}
+        submitLabel={editProjectId ? "Update" : "Save"}
+        content={
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <TextField
+              label="Project Name"
+              name="projectName"
+              value={formData.projectName}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Project Description"
+              name="projectDescription"
+              value={formData.projectDescription}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Duration"
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Box>
+        }
       />
 
       {/* Delete Dialog */}
@@ -231,9 +231,9 @@ const ManageProject = () => {
         title="Delete Project"
         message="Are you sure you want to delete this project?"
         onClose={() => setOpenDeleteDialog(false)}
-        onConfirm={confirmDelete}
+        onConfirm={handleDelete}
       />
-    </>
+    </Box>
   );
 };
 

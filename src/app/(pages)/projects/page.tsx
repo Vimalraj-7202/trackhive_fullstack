@@ -4,7 +4,7 @@ import Projects from '@/app/components/projects/index'
 
 const page = () => {
   return (
-    <Box sx={{p:1.2}}>
+    <Box sx={{p:1.2,overflowY:'auto'}}>
       <Projects/>
     </Box>
   )

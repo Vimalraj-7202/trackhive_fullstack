@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./auth.thunk";
+import { getAllUsers, loginUser, registerUser } from "./auth.thunk";
 
 interface User {
   id: string;
@@ -10,6 +10,7 @@ interface User {
 }
 
 interface AuthState {
+  data: any;
   user: User | null;
   users: User[];
   token: string | null;
@@ -28,6 +29,7 @@ const initialState: AuthState = {
   loading: false,
   error: null,
   isAuthenticated: !!getLocalItem("token"),
+  data:null
 };
 
 const authSlice = createSlice({
@@ -86,6 +88,10 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload as string;
     });
+    builder.addCase(getAllUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
+  state.users = action.payload;
+});
+
   },
 });
 
