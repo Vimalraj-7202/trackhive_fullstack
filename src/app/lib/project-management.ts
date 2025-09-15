@@ -1,6 +1,5 @@
 import { apiGet,apiDelete,apiPost,apiPut } from "../services/axios.instance";
-import { GETALLPROJECT,CREATE_PROJECT,DELETE_PROJECT,UPDATE_PROJECT,GETPROJECT_BYID } from "../services/api.constant";
-
+import { GETALLPROJECT,CREATE_PROJECT,DELETE_PROJECT,UPDATE_PROJECT} from "../services/api.constant";
 class project_Service{
 
     //getallproject
@@ -10,7 +9,6 @@ class project_Service{
     }
 
     //create project
-
     async createProject(data:any):Promise<any>{
         const response=await apiPost(CREATE_PROJECT,data)
         return response.data;

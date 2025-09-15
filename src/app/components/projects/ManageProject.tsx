@@ -29,14 +29,12 @@ const ManageProject = () => {
   const handleSubmit = async () => {
     try {
       if (editProjectId!==null) {
-        await dispatch(
-          updateProject({ id: editProjectId, data: formData }) as any
-        ).unwrap();
+        await dispatch(updateProject({ id: editProjectId, data: formData }) as any).unwrap();
       } else {
         await dispatch(createProject(formData) as any).unwrap();
       }
       setOpenDialog(false);
-      setFormData({ projectName: "", projectDescription: "", duration: "" });
+      setFormData({ projectName:"",projectDescription:"",duration:""});
       setEditProjectId(null);
       dispatch(getAllProject() as any);
     } catch (err) {
@@ -48,7 +46,7 @@ const ManageProject = () => {
   const handleDelete = async () => {
     if (!deleteProjectId) return;
     try {
-      await dispatch(deleteProject(deleteProjectId) as any).unwrap();
+      await dispatch(deleteProject(deleteProjectId)as any).unwrap();
       setDeleteProjectId(null);
       setOpenDeleteDialog(false);
       dispatch(getAllProject() as any);
