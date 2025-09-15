@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '@/app/components/layout/Sidebar';
-import Topbar from '../components/layout/Topbar';
+// import Topbar from '../components/layout/Topbar';
 import { Box } from '@mui/material';
 
 const Layout = ({ children }: any) => {

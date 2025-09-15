@@ -1,9 +1,22 @@
-import {Typography,Box,Button,Grid,Paper,IconButton,TextField} from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  Grid,
+  Paper,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
-import {createProject,getAllProject,updateProject,deleteProject} from "@/app/store/project/project.thunk";
+import {
+  createProject,
+  getAllProject,
+  updateProject,
+  deleteProject,
+} from "@/app/store/project/project.thunk";
 import { RootState } from "@/app/store/store";
 import CommonDialog from "@/app/common/commonDialog";
 import CommonDeleteDialog from "@/app/common/DeleteDialog";
@@ -15,11 +28,7 @@ const ManageProject = () => {
   );
   const [openDialog, setOpenDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [formData, setFormData] = useState({
-    projectName: "",
-    projectDescription: "",
-    duration: "",
-  });
+  const [formData, setFormData] = useState({projectName: "",projectDescription: "",duration: ""});
   const [editProjectId, setEditProjectId] = useState<string | null>(null);
   const [deleteProjectId, setDeleteProjectId] = useState<string | null>(null);
 
@@ -116,12 +125,12 @@ const ManageProject = () => {
             <Paper
               elevation={3}
               sx={{
-                p:1,
+                p: 1,
                 borderRadius: "12px",
                 width: "320px",
                 height: "150px",
                 position: "relative",
-                minHeight:'150px',
+                minHeight: "150px",
                 background: "linear-gradient(135deg, #ffffff 30%, #008080)",
                 display: "flex",
                 flexDirection: "column",
@@ -174,8 +183,7 @@ const ManageProject = () => {
                   onClick={() => {
                     setDeleteProjectId(project._id);
                     setOpenDeleteDialog(true);
-                  }}
-                >
+                  }}>
                   <DeleteIcon fontSize="small" />
                 </IconButton>
               </Box>
@@ -189,7 +197,7 @@ const ManageProject = () => {
                   backgroundSize: "18px 18px",
                   transform: "rotate(-45deg) scale(1.2)",
                   opacity: 0.3,
-                  pointerEvents: "none",
+                  pointerEvents: "none"
                 }}
               />
             </Paper>

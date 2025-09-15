@@ -18,21 +18,12 @@ import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-
-//type import
-import {
-  DashboardData,
-  ManagerDashboard,
-  TeamLeadDashboard,
-  EmployeeDashboard,
-} from "@/app/Types/dashboard.type";
+import {DashboardData,ManagerDashboard,TeamLeadDashboard,EmployeeDashboard} from "@/app/Types/dashboard.type";
 import { DarkMode } from "@mui/icons-material";
 
 const DashboardPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.dashboard
-  );
+  const { data, loading, error } = useSelector((state: RootState) => state.dashboard);
   const auth = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
@@ -66,7 +57,7 @@ const DashboardPage: React.FC = () => {
 
   const renderCards = () => {
     switch (role) {
-      case "project-manager":
+      case "admin":
         const pm = dashboard as ManagerDashboard;
         return (
           // <--------------------project manager-------------------------------->
@@ -539,7 +530,7 @@ const DashboardPage: React.FC = () => {
         );
 
       // <--------------------------------team lead--------------------------->
-      case "team-lead":
+      case "tutor":
         const tl = dashboard as TeamLeadDashboard;
         return (
           <Box
@@ -959,7 +950,7 @@ const DashboardPage: React.FC = () => {
           </Box>
         );
       // <-------------------------Employee---------------------------->
-      case "employee":
+      case "student":
         const emp = dashboard as EmployeeDashboard;
         return (
           <Box

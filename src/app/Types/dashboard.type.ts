@@ -26,6 +26,6 @@ export interface EmployeeDashboard {
 
 export type DashboardData = {
   name: any;
-  role: "project-manager" | "team-lead" | "employee";
+  role: "admin" | "tutor" | "student";
   dashboard: ManagerDashboard | TeamLeadDashboard | EmployeeDashboard;
 };
