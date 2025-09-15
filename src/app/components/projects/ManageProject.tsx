@@ -22,13 +22,13 @@ const ManageProject = () => {
   }, [dispatch]);
 
   const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData,[e.target.name]:e.target.value});
   };
 
   // submit form
   const handleSubmit = async () => {
     try {
-      if (editProjectId) {
+      if (editProjectId!==null) {
         await dispatch(
           updateProject({ id: editProjectId, data: formData }) as any
         ).unwrap();
