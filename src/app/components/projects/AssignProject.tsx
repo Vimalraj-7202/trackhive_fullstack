@@ -1,36 +1,21 @@
-import {
-  Typography,
-  Box,
-  Button,
-  Grid,
-  Paper,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import {Typography,Box,Button,Grid,Paper,IconButton,TextField} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createProject,
-  getAllProject,
-  updateProject,
-  deleteProject,
-} from "@/app/store/project/project.thunk";
+import {createProject,getAllProject,updateProject,deleteProject} from "@/app/store/project/project.thunk";
 import { RootState } from "@/app/store/store";
 import CommonDialog from "@/app/common/commonDialog";
 import CommonDeleteDialog from "@/app/common/DeleteDialog";
 
 const ManageProject = () => {
   const dispatch = useDispatch();
-  const { loading, error, data } = useSelector(
-    (state: RootState) => state.project
-  );
+  const {loading,error,data } = useSelector((state: RootState) => state.project);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [formData, setFormData] = useState({projectName: "",projectDescription: "",duration: ""});
-  const [editProjectId, setEditProjectId] = useState<string | null>(null);
-  const [deleteProjectId, setDeleteProjectId] = useState<string | null>(null);
+  const [editProjectId, setEditProjectId] = useState<string|null>(null);
+  const [deleteProjectId, setDeleteProjectId] = useState<string|null>(null);
 
   useEffect(() => {
     dispatch(getAllProject() as any);
@@ -44,14 +29,12 @@ const ManageProject = () => {
   const handleSubmit = async () => {
     try {
       if (editProjectId) {
-        await dispatch(
-          updateProject({ id: editProjectId, data: formData }) as any
-        ).unwrap();
+        await dispatch(updateProject({id:editProjectId,data:formData}) as any).unwrap();
       } else {
         await dispatch(createProject(formData) as any).unwrap();
       }
       setOpenDialog(false);
-      setFormData({ projectName: "", projectDescription: "", duration: "" });
+      setFormData({projectName:"",projectDescription:"",duration:""});
       setEditProjectId(null);
       dispatch(getAllProject() as any);
     } catch (err) {
@@ -68,13 +51,13 @@ const ManageProject = () => {
       setOpenDeleteDialog(false);
       dispatch(getAllProject() as any);
     } catch (err) {
-      console.error("Failed to delete project:", err);
+      console.error("Failed to delete project:",err);
     }
   };
 
   return (
     <Box sx={{ overflowY: "auto", height: "calc(100vh - 120px)" }}>
-      <Typography sx={{ fontWeight: "bold", color: "gray", fontSize: "17px" }}>
+      <Typography sx={{fontWeight:"bold",color:"gray",fontSize:"17px"}}>
         Assign Project
       </Typography>
 
@@ -108,11 +91,7 @@ const ManageProject = () => {
         spacing={3}
         mt={2}
         ml={1}
-        sx={{
-          overflowY: "auto",
-          maxHeight: "77vh",
-        }}
-      >
+        sx={{overflowY: "auto",maxHeight: "77vh"}}>
         {loading && (
           <Typography sx={{ mt: 2, color: "gray" }}>Loading...</Typography>
         )}

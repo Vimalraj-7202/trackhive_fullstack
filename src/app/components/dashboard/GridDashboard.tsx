@@ -861,13 +861,12 @@ const DashboardPage: React.FC = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "flex-end",
-                  mt: 1,
+                  mt: 1
                 }}
               >
                 {/* Label on bottom left */}
                 <Typography
-                  sx={{ color: "#fb8c00", fontWeight: 500, fontSize: 14 }}
-                >
+                  sx={{ color: "#fb8c00", fontWeight: 500, fontSize: 14 }}>
                   Upcoming Deadlines
                 </Typography>
 
