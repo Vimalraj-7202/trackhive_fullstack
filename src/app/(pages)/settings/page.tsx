@@ -1,9 +1,8 @@
-import React from 'react';
-import Settings from '@/app/components/settings/index'
+import React from 'react'
 
 const page = () => {
   return (
-    <div><Settings/></div>
+    <div>page</div>
   )
 }
 

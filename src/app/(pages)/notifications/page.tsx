@@ -1,11 +1,8 @@
-import React from 'react';
-import NotificationsScreen from '@/app/components/notifications/Index';
+import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      <NotificationsScreen/>
-    </div>
+    <div>page</div>
   )
 }
 
