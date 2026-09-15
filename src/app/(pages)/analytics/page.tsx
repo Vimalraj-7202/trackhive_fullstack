@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Analytics from '@/app/components/analytics/index'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div><Analytics/></div>
   )
 }
 

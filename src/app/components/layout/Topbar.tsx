@@ -1,46 +1,70 @@
 'use client';
-import React from 'react';
-import { Box, Typography, Avatar, IconButton } from '@mui/material';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Avatar } from '@mui/material';
+import { useAppSelector } from '@/app/store/store';
+import { usePathname } from 'next/navigation';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 
 const Topbar = () => {
-  return (
-<Box
-  sx={{
-    height: '50px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    pl:1,
-    pr: 3,
-    bgcolor: '#f3f4f6',
-    borderRadius:'4px',
-    borderBottom: '1px solid #e0e0e0',
-    position: 'fixed',
-    top: 0,
-    left: '0px',
-    right: 0,
-    zIndex: 1000,
-  }}
->
+  const { user } = useAppSelector((state) => state.auth);
+  const [profilePic, setProfilePic] = useState<string | null>(null);
+  const pathname = usePathname();
 
-      {/* Left side */}
-      <Typography variant="h6" fontWeight="bold">
-        Home
+  useEffect(() => {
+    const storedPic = localStorage.getItem('profilePic');
+    if (storedPic) {
+      setProfilePic(storedPic);
+    }
+  }, []);
+
+  const getPageName = (path: string): string => {
+    if (path === '/') return 'Home';
+    const segments = path.split('/').filter(Boolean);
+    return segments
+      .map(segment => segment.charAt(0).toUpperCase() + segment.slice(1))
+      .join(' / ');
+  };
+
+  const pageTitle = getPageName(pathname);
+
+  return (
+    <Box
+      sx={{
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        px: 3,
+        mt: '2px',
+        bgcolor: 'white',
+        color: 'black',
+        borderRadius: '8px',
+      }}
+    >
+      <Typography fontWeight="bold" sx={{ color: 'black' }}>
+        {pageTitle}
       </Typography>
 
-      {/* Right side */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <IconButton>
-          <NotificationsIcon />
-        </IconButton>
-        <Box textAlign="right">
-          <Typography sx={{color:'gray',fontSize:'12px'}}>Vimalraj S</Typography>
-          <Typography sx={{color:'black',fontSize:'11px',fontWeight:'bold'}}>
-            Employee
+      <Box display="flex" alignItems="center" gap={1}>
+        <NotificationsActiveOutlinedIcon sx={{ color: 'gray', fontSize: '30px' }} />
+        <Avatar
+          src={
+            profilePic ||
+            'https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=600&auto=format&fit=crop&q=60'
+          }
+          alt={user?.name || 'Profile'}
+        />
+        <Box display="flex" flexDirection="column" alignItems="flex-start" ml={1}>
+          <Typography fontSize="0.875rem" fontWeight={500}>
+            {user?.name || 'Guest User'}
+          </Typography>
+          <Typography fontSize="0.75rem" color="gray">
+            {user?.role
+              ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
+              : 'Employee'}
+
           </Typography>
         </Box>
-        <Avatar src="https://i.pravatar.cc/150?img=1" />
       </Box>
     </Box>
   );

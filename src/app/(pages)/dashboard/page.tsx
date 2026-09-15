@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Dashboard from '@/app/components/dashboard/index'
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+    <Dashboard/>
+    </>
   )
 }
 
