@@ -1,10 +1,8 @@
-import React from 'react';
-import Report from '@/app/components/report/index'
-
+import React from 'react'
 
 const page = () => {
   return (
-    <div><Report/></div>
+    <div>page</div>
   )
 }
 
